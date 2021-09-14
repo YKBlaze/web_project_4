@@ -3,5 +3,5 @@
     height: 19px;
 }
 .element__like-image:active {
-    background-image: url("../__like-image/likebuttonactive.svg")
+    background-image: url("../__like-image/likebuttonactive.svg");
 }
