@@ -1,16 +1,41 @@
 # Project 4: Around The U.S.
 
+## UPDATES
+**version 0.9**
+Almost finished the project
+added .nojekyll
+made README.md
+
 ### Overview
+* Intro
+* Visit 
+* Languages
+* Design
+* Deployment and system requirements
+* Improvments
 
-* Figma
-* Images
+**Intro**
 
-**Figma**
+This is a project about traveling around the US. We've made it so all the elements are displayed correctly on popular screen sizes.
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+**Visit**
 
-**Images**
+* [Link to the project on Github pages](https://ykblaze.github.io/web_project_4/)
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+**Languages**
 
-Have fun with JavaScript!
+This project has been fully coded using CSS and HTML & Javascript. 
+
+**Design**
+
+The project was designed using CSS flex and grid propreties, to add functionality on various screen sizes @media queries were implemented. Edit button was added with Javascript.
+
+**Deployment and system requirements**
+
+Webpage is compatible with all web-browsers and has no errors.
+
+**Improvments**
+
+1. make the active of like-button stay
+2. name scripts according to BEM
+3. make so a long name wont break the UI

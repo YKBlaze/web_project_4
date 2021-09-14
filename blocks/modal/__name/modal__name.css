@@ -1,0 +1,18 @@
+.modal__name {
+    all: unset;
+    position: absolute;
+    bottom: 191px;
+    left: 36px;
+    width: 358px;
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width:1279px){
+    .modal__name{
+        width: 238px;
+        height: 46px;
+        bottom: 173px;
+        left: 22px;
+    }
+}

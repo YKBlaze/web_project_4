@@ -1,0 +1,18 @@
+.modal__about-me {
+    all: unset;
+    position: absolute;
+    width: 358px;
+    bottom: 135px;
+    left: 36px;
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width:1279px){
+    .modal__about-me{
+        width: 238px;
+        height: 46px;
+        bottom: 117px;
+        left: 22px;
+    }
+}

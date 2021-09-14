@@ -1,0 +1,12 @@
+.element__like-button{
+    margin-top: 5px;
+    background: none;
+	padding: 0;
+    color: white;
+	cursor: pointer;
+	outline: inherit;
+    border: none;
+}
+.element__like-button:hover {
+    opacity: 0.5;
+}
