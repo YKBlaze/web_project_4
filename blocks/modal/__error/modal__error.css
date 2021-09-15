@@ -6,3 +6,10 @@
     bottom: 0;
     left: 30%;
 }
+@media screen and (max-width:1279px){
+    .modal__error {
+        left: 20%;
+        bottom: -10px;
+    }
+    
+}
