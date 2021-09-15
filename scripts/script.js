@@ -20,9 +20,14 @@ modalCloseButton.addEventListener('click', function hideModal(evt) {
 });
 function handleFormSubmit(evt) {
     evt.preventDefault();
-    profileName.innerText = modalName.value;
-    profileAboutMe.innerText = modalAboutMe.value;
-    modal.classList.add('modal_disabled');
-    pageOverlay.classList.add('page__overlay_disabled');
+    if (modalName.value.length < 23 && modalAboutMe.value.length < 45) {
+        profileName.innerText = modalName.value;
+        profileAboutMe.innerText = modalAboutMe.value;
+        modal.classList.add('modal_disabled');
+        pageOverlay.classList.add('page__overlay_disabled');
+    }
+    else {
+    return;
+    }
 }
 modalSaveButton.addEventListener('click', handleFormSubmit);

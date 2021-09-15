@@ -1,10 +1,9 @@
 # Project 4: Around The U.S.
 
 ## UPDATES
-**version 0.9**
-Almost finished the project
-added .nojekyll
-made README.md
+**version 1**
+gave name change a limit
+fixed minor issues
 
 ### Overview
 * Intro
@@ -38,4 +37,3 @@ Webpage is compatible with all web-browsers and has no errors.
 
 1. make the active of like-button stay
 2. name scripts according to BEM
-3. make so a long name wont break the UI
