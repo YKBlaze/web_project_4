@@ -7,12 +7,14 @@ const profileAboutMe = document.querySelector(`.profile__about-me`);
 const modalName = document.querySelector(`.modal__name`);
 const modalAboutMe = document.querySelector(`.modal__about-me`);
 const pageOverlay = document.querySelector(`.page__overlay`);
+const modalError = document.querySelector(`.modal__error`);
 
 modalEditButton.addEventListener('click', function displayModal(evt) {
     modalName.value = profileName.innerText;
     modalAboutMe.value = profileAboutMe.innerText;
     modal.classList.remove('modal_disabled');
     pageOverlay.classList.remove('page__overlay_disabled');
+    modalError.classList.add('modal__error_disabled');
 });
 modalCloseButton.addEventListener('click', function hideModal(evt) {
     modal.classList.add('modal_disabled');
@@ -27,7 +29,7 @@ function handleFormSubmit(evt) {
         pageOverlay.classList.add('page__overlay_disabled');
     }
     else {
-    return;
+    return modalError.classList.remove('modal__error_disabled');
     }
 }
 modalSaveButton.addEventListener('click', handleFormSubmit);

@@ -1,0 +1,8 @@
+.modal__error {
+    position: absolute;
+    color: red;
+    font-size: 14px;
+    line-height: 17px;
+    bottom: 0;
+    left: 30%;
+}
