@@ -1,7 +1,0 @@
-.element__like-image {
-    width: 21px;
-    height: 19px;
-}
-.element__like-image:active {
-    background-image: url("../__like-image/likebuttonactive.svg");
-}
