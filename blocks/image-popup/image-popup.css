@@ -1,0 +1,18 @@
+.image-popup {
+    position: fixed;
+    max-width: 816px;
+    height: 540px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 90px;
+    z-index: 1;
+    transition: 0.3s;
+    opacity: 1;
+}
+@media screen and (max-width:1279px){
+    .image-popup {
+        min-width: 240px;
+        min-height: 299px;
+    }
+    
+}

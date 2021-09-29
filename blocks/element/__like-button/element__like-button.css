@@ -10,6 +10,7 @@
     background-size: 100%;
     min-width: 21px;
     height: 19px;
+    transition: 0.5s; 
 }
 .element__like-button:hover {
     opacity: 0.5;

@@ -12,6 +12,7 @@
     color: white;
 	cursor: pointer;
 	outline: inherit;
+    transition: 0.5s; 
 }
 .profile__add-button:hover {
     opacity: 0.6;

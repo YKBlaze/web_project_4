@@ -1,4 +1,4 @@
-.modal_disabled {
+.image-popup_disabled{
     pointer-events: none;
     cursor: default;
     opacity: 0;
