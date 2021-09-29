@@ -2,8 +2,7 @@
 
 ## UPDATES
 **version 1**
-gave name change a limit
-fixed minor issues
+edit and create button fully functional
 
 ### Overview
 * Intro
@@ -23,11 +22,11 @@ This is a project about traveling around the US. We've made it so all the elemen
 
 **Languages**
 
-This project has been fully coded using CSS and HTML & Javascript. 
+This project has been fully coded using CSS HTML & Javascript. 
 
 **Design**
 
-The project was designed using CSS flex and grid propreties, to add functionality on various screen sizes @media queries were implemented. Edit button was added with Javascript.
+The project was designed using CSS flex and grid propreties page transitions are fully animated and smooth, to add functionality on various screen sizes @media queries were implemented. Edit button was added with Javascript. Full functionality of adding element cards, like button, image popups, modals.  
 
 **Deployment and system requirements**
 
