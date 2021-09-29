@@ -3,13 +3,12 @@
     color: red;
     font-size: 14px;
     line-height: 17px;
-    position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     bottom: 0;
     text-align: center;
-    white-space: nowrap
+    white-space: nowrap;
 }
 @media screen and (max-width:1279px){
     .modal__error {
