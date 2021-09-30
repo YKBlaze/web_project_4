@@ -1,15 +1,12 @@
-.image-popup {
-    position: fixed;
+.modal_type_image-card {
     max-width: 816px;
     height: 540px;
-    left: 50%;
     transform: translate(-50%, 0);
+    left: 50%;
     margin-top: 90px;
-    z-index: 1;
-    transition: 0.3s;
 }
 @media screen and (max-width:1279px){
-    .image-popup {
+    .modal_type_image-card {
         min-width: 240px;
         min-height: 299px;
     }

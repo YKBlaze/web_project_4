@@ -1,4 +1,4 @@
-.image-popup__close {
+.modal__image-close {
     height: 40px;
     width: 40px;
     position: absolute;
@@ -11,13 +11,13 @@
     transition: 0.5s; 
 }
 @media screen and (max-width:1279px){
-    .image-popup__close{
+    .modal__image-close{
         height: 26px;
         width: 26px;
         top: -40px;
         right: -25px;
     }
 }
-.image-popup__close:hover {
+.modal__image-close:hover {
     opacity: 0.6;
 }

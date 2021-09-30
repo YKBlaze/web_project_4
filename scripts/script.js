@@ -7,8 +7,8 @@ const profileName = document.querySelector(`.profile__name`);
 const profileAboutMe = document.querySelector(`.profile__about-me`);
 const modalAdd = document.querySelector(`.modal_type_add-card`);
 const modalEdit = document.querySelector(`.modal_type_edit-card`);
+const modalImage = document.querySelector(`.modal_type_image-card`);
 const modalName = modalEdit.querySelector(`.modal__name`);
-const modalImage = document.querySelector(`.image-popup`);
 const modalAboutMe = modalEdit.querySelector(`.modal__about-me`);
 const modalTitle = modalAdd.querySelector(`.modal__name`);
 const modalLink = modalAdd.querySelector(`.modal__about-me`);
@@ -89,9 +89,9 @@ function initiateCard(card) {
         elementCard.remove();
     });
     elementCard.querySelector('.element__image-button').addEventListener('click', (evt) => {
-        modalImage.querySelector(`.image-popup__image`).src = initialCards[card].link;
-        modalImage.querySelector(`.image-popup__image`).alt = initialCards[card].alt;
-        modalImage.querySelector(`.image-popup__footer`).textContent = initialCards[card].name;
+        modalImage.querySelector(`.modal__image`).src = initialCards[card].link;
+        modalImage.querySelector(`.modal__image`).alt = initialCards[card].alt;
+        modalImage.querySelector(`.modal__footer`).textContent = initialCards[card].name;
         openModal(modalImage);
     });
     return elements.prepend(elementCard);
@@ -107,6 +107,6 @@ modalEditButton.addEventListener('click', () => openModal(modalEdit));
 modalEditClose.addEventListener('click', () => closeModal(modalEdit))
 modalAddButton.addEventListener('click', () => openModal(modalAdd));
 modalAddClose.addEventListener('click', () => closeModal(modalAdd));
-modalImage.querySelector(`.image-popup__close`).addEventListener('click', () => closeModal(modalImage));
+modalImage.querySelector(`.modal__image-close`).addEventListener('click', () => closeModal(modalImage));
 modalAddSubmit.addEventListener('click', handleSaveForm);
 modalEditSubmit.addEventListener('click', handleSubmitForm);
