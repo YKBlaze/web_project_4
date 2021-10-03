@@ -66,6 +66,7 @@ function handleSubmitForm(evt) {
 }
 
 function handleSaveForm(evt) {
+    evt.preventDefault();   
     const initialCardsUpdated = [{
         name: "",
         link: "",
@@ -73,7 +74,7 @@ function handleSaveForm(evt) {
     }];
     initialCardsUpdated.name = modalTitle.value;
     initialCardsUpdated.link = modalLink.value;
-    initialCardsUpdated.alt = modalLink.value;
+    initialCardsUpdated.alt = `Photo of ${modalTitle.value}`;
     initiateCard(initialCardsUpdated);
     closeModal(modalAdd);
 }
@@ -96,7 +97,7 @@ function initiateCard(card) {
         modalImage.querySelector(`.modal__footer`).textContent = card.name;
         openModal(modalImage);
     });
-    renderCard(elementCard);
+    return renderCard(elementCard);
 }
 
 function initiateCards() {
@@ -105,8 +106,7 @@ function initiateCards() {
     }
 }
 function renderCard(card){
-    const elementCard = card;
-    elements.prepend(elementCard);
+    elements.prepend(card);
 }
 initiateCards();
 modalEditButton.addEventListener('click', () => {
