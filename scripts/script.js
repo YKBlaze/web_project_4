@@ -15,6 +15,7 @@ const modalEditClose = modalEdit.querySelector(`.modal__close`);
 const modalAddClose = modalAdd.querySelector(`.modal__close`);
 const modalEditSubmit = modalEdit.querySelector(`.modal__save`);
 const modalAddSubmit = modalAdd.querySelector(`.modal__save`);
+
 const elementTemplate = document.querySelector(`#element`).content;
 const initialCards = [{
         name: "Yosemite Valley",
@@ -49,6 +50,8 @@ const initialCards = [{
 ];
 
 function openModal(modalWindow) {
+    createListener(modalWindow);
+    clickClose(modalWindow);
     modalWindow.classList.remove(`modal_disabled`);
     pageOverlay.classList.remove('page__overlay_disabled');
 }
@@ -105,9 +108,32 @@ function initiateCards() {
         initiateCard(initialCards[i]);
     }
 }
+
 function renderCard(card){
     elements.prepend(card);
 }
+
+function createListener(modalWindow){
+    document.addEventListener('keydown', function create(event){
+        if(event.key === "Escape"){
+            closeModal(modalWindow);
+            document.removeEventListener('keydown', create);
+        }
+    });
+}
+
+function clickClose(modalWindow) {
+
+    document.addEventListener('click', function create(event) {
+        event.stopPropagation();
+        var isClickInside = modalWindow.contains(event.target);
+        if (!isClickInside) {
+          closeModal(modalWindow);
+          document.removeEventListener('click', create);
+        }
+      });
+}
+
 initiateCards();
 modalEditButton.addEventListener('click', () => {
     modalName.value = profileName.textContent; 

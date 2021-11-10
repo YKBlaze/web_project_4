@@ -12,17 +12,21 @@
                 <button class="modal__close" type="button"><img src="images/close-button.svg" alt="white x" /></button>
                 <h3 class="modal__title">Edit profile</h3>
                 <form class="modal__form" name="edit">
-                    <input class="modal__name" type="text" name="name" placeholder="Name" maxlength="22" required />
-                    <input class="modal__about-me" type="text" name="about-me" placeholder="About me" maxlength="50" required />
+                    <input id="title" class="modal__name modal__input" type="text" name="title" placeholder="Name" maxlength="22" required />
+                    <span id="title" class="modal__error">Please fill out this field.</span>
+                    <input id="about" class="modal__about-me modal__input" type="text" name="about" placeholder="About me" maxlength="50" required />
+                    <span id="about" class="modal__error">Please fill out this field.</span>
                     <button class="modal__save" type="submit" name="save">Save</button>
                 </form>
             </div>
             <div class="modal modal_type_add-card modal_disabled">
                 <button class="modal__close" type="button"><img src="images/close-button.svg" alt="white x" /></button>
                 <h3 class="modal__title">New Place</h3>
-                <form class="modal__form" name="edit">
-                    <input class="modal__name" type="text" name="title" placeholder="Title" required />
-                    <input class="modal__about-me" type="text" name="image-link" placeholder="Image link" required />
+                <form class="modal__form" name="add">
+                    <input id="name" class="modal__name modal__input" type="text" name="title" placeholder="Title" required />
+                    <span id="name" class="modal__error">Please fill out this field.</span>
+                    <input id="url" class="modal__about-me modal__input" type="url" name="image-link" placeholder="Image link" required />
+                    <span id="url" class="modal__error">Please fill out this field.</span>
                     <button class="modal__save" type="submit" name="create">Create</button>
                 </form>
             </div>
@@ -65,6 +69,7 @@
                 </footer>
             </div>
         </div>
-        <script src="scripts/script.js"></script>
+        <script src="scripts/validate.js" defer></script>
+        <script src="scripts/script.js" defer></script>
     </body>
 </html>

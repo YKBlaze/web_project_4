@@ -1,0 +1,6 @@
+.modal__error{
+    display: none;
+    visibility: none;
+    color: red;
+    font-size: 12px;
+}
