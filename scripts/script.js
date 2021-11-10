@@ -51,7 +51,6 @@ const initialCards = [{
 
 function openModal(modalWindow) {
     createListener(modalWindow);
-    clickClose(modalWindow);
     modalWindow.classList.remove(`modal_disabled`);
     pageOverlay.classList.remove('page__overlay_disabled');
 }
