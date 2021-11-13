@@ -5,6 +5,7 @@ const elements = document.querySelector(`.elements`);
 const profileName = document.querySelector(`.profile__name`);
 const profileAboutMe = document.querySelector(`.profile__about-me`);
 const modalAdd = document.querySelector(`.modal_type_add-card`);
+const modalSubmitButton = modalAdd.querySelector('.modal__save');
 const modalEdit = document.querySelector(`.modal_type_edit-card`);
 const modalImage = document.querySelector(`.modal_type_image-card`);
 const modalName = modalEdit.querySelector(`.modal__name`);
@@ -15,8 +16,8 @@ const modalEditClose = modalEdit.querySelector(`.modal__close`);
 const modalAddClose = modalAdd.querySelector(`.modal__close`);
 const modalEditSubmit = modalEdit.querySelector(`.modal__save`);
 const modalAddSubmit = modalAdd.querySelector(`.modal__save`);
-
 const elementTemplate = document.querySelector(`#element`).content;
+
 const initialCards = [{
         name: "Yosemite Valley",
         link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
@@ -52,11 +53,15 @@ const initialCards = [{
 function openModal(modalWindow) {
     createListener(modalWindow);
     clickClose(modalWindow);
+    clickEnter(modalWindow);
     modalWindow.classList.remove(`modal_disabled`);
     pageOverlay.classList.remove('page__overlay_disabled');
 }
 
 function closeModal(modalWindow) {
+    modalWindow.removeEventListener('keyup' , createListener);
+    modalWindow.removeEventListener('click' , clickClose);
+    modalWindow.removeEventListener('keyup  ' , clickEnter);
     modalWindow.classList.add(`modal_disabled`);
     pageOverlay.classList.add('page__overlay_disabled');
 }
@@ -79,6 +84,10 @@ function handleSaveForm(evt) {
     initialCardsUpdated.link = modalLink.value;
     initialCardsUpdated.alt = `Photo of ${modalTitle.value}`;
     initiateCard(initialCardsUpdated);
+    modalTitle.value = "";
+    modalLink.value ="";
+    modalSubmitButton.disabled = true;
+    modalSubmitButton.classList.add('modal__save_disabled');
     closeModal(modalAdd);
 }
 
@@ -114,10 +123,10 @@ function renderCard(card){
 }
 
 function createListener(modalWindow){
-    document.addEventListener('keydown', function create(event){
+    document.addEventListener('keyup', function create(event){
         if(event.key === "Escape"){
             closeModal(modalWindow);
-            document.removeEventListener('keydown', create);
+            document.removeEventListener('keyup', create);
         }
     });
 }
@@ -132,6 +141,17 @@ function clickClose(modalWindow) {
         }
       });
 }
+function clickEnter(modalWindow) {
+    document.addEventListener('keyup', function create(event) {
+        if (event.key === "Enter"){
+        const modalWindowButton = modalWindow.querySelector('.modal__save');
+        if (!modalWindowButton.disabled){
+            modalWindowButton.click();
+            document.removeEventListener('keyup', create);
+        }
+      }
+    })
+}
 
 initiateCards();
 modalEditButton.addEventListener('click', () => {
@@ -139,9 +159,12 @@ modalEditButton.addEventListener('click', () => {
     modalAboutMe.value = profileAboutMe.textContent; 
     openModal(modalEdit);
   });
+
+modalSubmitButton.disabled = true;
+modalSubmitButton.classList.add('modal__save_disabled');
 modalEditClose.addEventListener('click', () => closeModal(modalEdit))
 modalAddButton.addEventListener('click', () => openModal(modalAdd));
 modalAddClose.addEventListener('click', () => closeModal(modalAdd));
-modalImage.querySelector(`.modal__image-close`).addEventListener('click', () => closeModal(modalImage));
+modalImage.querySelector(`.modal__close`).addEventListener('click', () => closeModal(modalImage));
 modalAddSubmit.addEventListener('click', handleSaveForm);
 modalEditSubmit.addEventListener('click', handleSubmitForm);
