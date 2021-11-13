@@ -5,4 +5,10 @@
     visibility: none;
     color: red;
     font-size: 12px;
+    font-weight: 400;
+}
+@media screen and (max-width:1279px){
+    .modal__error{
+        margin-left: 22px;
+    }
 }
