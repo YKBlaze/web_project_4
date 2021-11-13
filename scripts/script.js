@@ -123,7 +123,7 @@ function createListener(modalWindow){
 }
 
 function clickClose(modalWindow) {
-    document.addEventListener('click', function create(event) {
+    document.addEventListener('mousedown', function create(event) {
         const page = document.querySelector('.page');
         const pageWrapper = document.querySelector('.page__wrapper');
         if ((event.target === page)||(event.target === pageWrapper)) {
