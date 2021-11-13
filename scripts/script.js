@@ -51,6 +51,7 @@ const initialCards = [{
 
 function openModal(modalWindow) {
     createListener(modalWindow);
+    clickClose(modalWindow);
     modalWindow.classList.remove(`modal_disabled`);
     pageOverlay.classList.remove('page__overlay_disabled');
 }
@@ -122,11 +123,10 @@ function createListener(modalWindow){
 }
 
 function clickClose(modalWindow) {
-
     document.addEventListener('click', function create(event) {
-        event.stopPropagation();
-        var isClickInside = modalWindow.contains(event.target);
-        if (!isClickInside) {
+        const page = document.querySelector('.page');
+        const pageWrapper = document.querySelector('.page__wrapper');
+        if ((event.target === page)||(event.target === pageWrapper)) {
           closeModal(modalWindow);
           document.removeEventListener('click', create);
         }

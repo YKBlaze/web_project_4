@@ -1,0 +1,6 @@
+.modal__form{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+}

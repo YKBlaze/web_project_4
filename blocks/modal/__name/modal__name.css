@@ -1,8 +1,7 @@
 .modal__name {
     all: unset;
-    position: absolute;
-    bottom: 191px;
-    left: 36px;
+    margin-top: 138px;
+    margin-left: 36px;
     width: 358px;
     font-size: 14px;
     line-height: 30px;
@@ -10,6 +9,8 @@
 }
 @media screen and (max-width:1279px){
     .modal__name{
+        margin-top: 149px;
+        margin-left: 22px;
         width: 238px;
         height: 46px;
         bottom: 173px;

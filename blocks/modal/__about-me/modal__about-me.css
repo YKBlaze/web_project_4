@@ -1,6 +1,7 @@
 .modal__about-me {
     all: unset;
-    position: absolute;
+    margin-top: 57px;
+    margin-left: 36px;
     width: 358px;
     bottom: 135px;
     left: 36px;
@@ -10,6 +11,8 @@
 }
 @media screen and (max-width:1279px){
     .modal__about-me{
+        margin-top: 56px;
+        margin-left: 22px;
         width: 238px;
         height: 46px;
         bottom: 117px;

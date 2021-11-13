@@ -1,4 +1,6 @@
 .modal__error{
+    margin-left: 36px;
+    margin-top: 5px;
     display: none;
     visibility: none;
     color: red;
