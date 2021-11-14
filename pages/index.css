@@ -6,7 +6,7 @@
 @import url("../blocks/page/__overlay/page__overlay.css");
 @import url("../blocks/page/__overlay/_disabled/page__overlay_disabled.css");
 @import url("../blocks/modal/modal.css");
-@import url("../blocks/modal/_disabled/modal_disabled.css");
+@import url("../blocks/modal/_opened/modal_opened.css");
 @import url("../blocks/modal/__about-me/modal__about-me.css");
 @import url("../blocks/modal/__close/modal__close.css");
 @import url("../blocks/modal/__name/modal__name.css");
@@ -20,7 +20,6 @@
 @import url("../blocks/modal/__input/_type/modal__input_type_error.css");
 @import url("../blocks/modal/__footer/modal__footer.css");
 @import url("../blocks/modal/__image/modal__image.css");
-@import url("../blocks/modal/__image-close/modal__image-close.css");
 @import url("../blocks/modal/_type/_image-card/modal_type_image-card.css");
 @import url("../blocks/modal/_type/_add-card/modal_type_add-card.css");
 @import url("../blocks/modal/_type/_edit-card/modal_type_edit-card.css");

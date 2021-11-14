@@ -12,11 +12,10 @@ const modalName = modalEdit.querySelector(`.modal__name`);
 const modalAboutMe = modalEdit.querySelector(`.modal__about-me`);
 const modalTitle = modalAdd.querySelector(`.modal__name`);
 const modalLink = modalAdd.querySelector(`.modal__about-me`);
-const modalEditClose = modalEdit.querySelector(`.modal__close`);
-const modalAddClose = modalAdd.querySelector(`.modal__close`);
 const modalEditSubmit = modalEdit.querySelector(`.modal__save`);
 const modalAddSubmit = modalAdd.querySelector(`.modal__save`);
 const elementTemplate = document.querySelector(`#element`).content;
+const closeButtons = document.querySelectorAll(`.modal__close`);
 
 const initialCards = [{
         name: "Yosemite Valley",
@@ -51,18 +50,18 @@ const initialCards = [{
 ];
 
 function openModal(modalWindow) {
-    createListener(modalWindow);
-    clickClose(modalWindow);
-    clickEnter(modalWindow);
-    modalWindow.classList.remove(`modal_disabled`);
+    document.addEventListener('keyup', createListener);
+    document.addEventListener('click', clickClose);
+    document.addEventListener('keyup', clickEnter);
+    modalWindow.classList.add(`modal_opened`);
     pageOverlay.classList.remove('page__overlay_disabled');
 }
 
 function closeModal(modalWindow) {
-    modalWindow.removeEventListener('keyup' , createListener);
-    modalWindow.removeEventListener('click' , clickClose);
-    modalWindow.removeEventListener('keyup  ' , clickEnter);
-    modalWindow.classList.add(`modal_disabled`);
+    document.removeEventListener('keyup' , createListener);
+    document.removeEventListener('click' , clickClose);
+    document.removeEventListener('keyup' , clickEnter);
+    modalWindow.classList.remove(`modal_opened`);
     pageOverlay.classList.add('page__overlay_disabled');
 }
 
@@ -75,11 +74,11 @@ function handleSubmitForm(evt) {
 
 function handleSaveForm(evt) {
     evt.preventDefault();   
-    const initialCardsUpdated = [{
+    const initialCardsUpdated = {
         name: "",
         link: "",
         alt: ""
-    }];
+    };
     initialCardsUpdated.name = modalTitle.value;
     initialCardsUpdated.link = modalLink.value;
     initialCardsUpdated.alt = `Photo of ${modalTitle.value}`;
@@ -122,35 +121,29 @@ function renderCard(card){
     elements.prepend(card);
 }
 
-function createListener(modalWindow){
-    document.addEventListener('keyup', function create(event){
-        if(event.key === "Escape"){
-            closeModal(modalWindow);
-            document.removeEventListener('keyup', create);
-        }
-    });
+function createListener(evt){
+    const openedPopup  = document.querySelector('.modal_opened');
+    if(evt.key === "Escape"){
+        closeModal(openedPopup);
+    }
 }
 
-function clickClose(modalWindow) {
-    document.addEventListener('mousedown', function create(event) {
+function clickClose(evt) {
+        const openedPopup  = document.querySelector('.modal_opened');
         const page = document.querySelector('.page');
         const pageWrapper = document.querySelector('.page__wrapper');
-        if ((event.target === page)||(event.target === pageWrapper)) {
-          closeModal(modalWindow);
-          document.removeEventListener('click', create);
+        if ((evt.target === page)||(evt.target === pageWrapper)) {
+          closeModal(openedPopup);
         }
-      });
 }
-function clickEnter(modalWindow) {
-    document.addEventListener('keyup', function create(event) {
-        if (event.key === "Enter"){
-        const modalWindowButton = modalWindow.querySelector('.modal__save');
+function clickEnter(evt) {
+        if (evt.key === "Enter"){
+        const openedPopup  = document.querySelector('.modal_opened');
+        const modalWindowButton = openedPopup.querySelector('.modal__save');
         if (!modalWindowButton.disabled){
             modalWindowButton.click();
-            document.removeEventListener('keyup', create);
         }
       }
-    })
 }
 
 initiateCards();
@@ -162,9 +155,11 @@ modalEditButton.addEventListener('click', () => {
 
 modalSubmitButton.disabled = true;
 modalSubmitButton.classList.add('modal__save_disabled');
-modalEditClose.addEventListener('click', () => closeModal(modalEdit))
 modalAddButton.addEventListener('click', () => openModal(modalAdd));
-modalAddClose.addEventListener('click', () => closeModal(modalAdd));
-modalImage.querySelector(`.modal__close`).addEventListener('click', () => closeModal(modalImage));
 modalAddSubmit.addEventListener('click', handleSaveForm);
 modalEditSubmit.addEventListener('click', handleSubmitForm);
+closeButtons.forEach(button => { 
+    button.addEventListener('click', () => {
+       const myModal = button.closest('.modal');
+       closeModal(myModal);
+})});
