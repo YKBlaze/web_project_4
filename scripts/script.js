@@ -50,17 +50,15 @@ const initialCards = [{
 ];
 
 function openModal(modalWindow) {
-    document.addEventListener('keyup', createListener);
+    document.addEventListener('keyup', closeByEscape);
     document.addEventListener('click', clickClose);
-    document.addEventListener('keyup', clickEnter);
     modalWindow.classList.add(`modal_opened`);
     pageOverlay.classList.remove('page__overlay_disabled');
 }
 
 function closeModal(modalWindow) {
-    document.removeEventListener('keyup' , createListener);
+    document.removeEventListener('keyup' , closeByEscape);
     document.removeEventListener('click' , clickClose);
-    document.removeEventListener('keyup' , clickEnter);
     modalWindow.classList.remove(`modal_opened`);
     pageOverlay.classList.add('page__overlay_disabled');
 }
@@ -85,8 +83,7 @@ function handleSaveForm(evt) {
     initiateCard(initialCardsUpdated);
     modalTitle.value = "";
     modalLink.value ="";
-    modalSubmitButton.disabled = true;
-    modalSubmitButton.classList.add('modal__save_disabled');
+    disableButton();
     closeModal(modalAdd);
 }
 
@@ -121,31 +118,27 @@ function renderCard(card){
     elements.prepend(card);
 }
 
-function createListener(evt){
-    const openedPopup  = document.querySelector('.modal_opened');
+function closeByEscape(evt){
     if(evt.key === "Escape"){
+        const openedPopup  = document.querySelector('.modal_opened');
         closeModal(openedPopup);
     }
 }
 
 function clickClose(evt) {
-        const openedPopup  = document.querySelector('.modal_opened');
         const page = document.querySelector('.page');
         const pageWrapper = document.querySelector('.page__wrapper');
         if ((evt.target === page)||(evt.target === pageWrapper)) {
+          const openedPopup  = document.querySelector('.modal_opened');
           closeModal(openedPopup);
         }
 }
-function clickEnter(evt) {
-        if (evt.key === "Enter"){
-        const openedPopup  = document.querySelector('.modal_opened');
-        const modalWindowButton = openedPopup.querySelector('.modal__save');
-        if (!modalWindowButton.disabled){
-            modalWindowButton.click();
-        }
-      }
-}
 
+function disableButton() {
+    modalSubmitButton.disabled = true;
+    modalSubmitButton.classList.add('modal__save_disabled');
+}
+disableButton();
 initiateCards();
 modalEditButton.addEventListener('click', () => {
     modalName.value = profileName.textContent; 
@@ -153,8 +146,6 @@ modalEditButton.addEventListener('click', () => {
     openModal(modalEdit);
   });
 
-modalSubmitButton.disabled = true;
-modalSubmitButton.classList.add('modal__save_disabled');
 modalAddButton.addEventListener('click', () => openModal(modalAdd));
 modalAdd.addEventListener('submit', handleSaveForm);
 modalEdit.addEventListener('submit', handleSubmitForm);
