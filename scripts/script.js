@@ -156,8 +156,8 @@ modalEditButton.addEventListener('click', () => {
 modalSubmitButton.disabled = true;
 modalSubmitButton.classList.add('modal__save_disabled');
 modalAddButton.addEventListener('click', () => openModal(modalAdd));
-modalAddSubmit.addEventListener('click', handleSaveForm);
-modalEditSubmit.addEventListener('click', handleSubmitForm);
+modalAdd.addEventListener('submit', handleSaveForm);
+modalEdit.addEventListener('submit', handleSubmitForm);
 closeButtons.forEach(button => { 
     button.addEventListener('click', () => {
        const myModal = button.closest('.modal');
