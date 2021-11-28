@@ -1,21 +1,21 @@
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
+import { openModal, closeModal} from "./utils.js";
 const modalEditButton = document.querySelector(`.profile__edit-button`);
 const modalAddButton = document.querySelector(`.profile__add-button`);
-const pageOverlay = document.querySelector(`.page__overlay`);
 const elements = document.querySelector(`.elements`);
 const profileName = document.querySelector(`.profile__name`);
 const profileAboutMe = document.querySelector(`.profile__about-me`);
 const modalAdd = document.querySelector(`.modal_type_add-card`);
 const modalSubmitButton = modalAdd.querySelector('.modal__save');
 const modalEdit = document.querySelector(`.modal_type_edit-card`);
-const modalImage = document.querySelector(`.modal_type_image-card`);
 const modalName = modalEdit.querySelector(`.modal__name`);
 const modalAboutMe = modalEdit.querySelector(`.modal__about-me`);
 const modalTitle = modalAdd.querySelector(`.modal__name`);
 const modalLink = modalAdd.querySelector(`.modal__about-me`);
-const modalEditSubmit = modalEdit.querySelector(`.modal__save`);
-const modalAddSubmit = modalAdd.querySelector(`.modal__save`);
 const elementTemplate = document.querySelector(`#element`).content;
 const closeButtons = document.querySelectorAll(`.modal__close`);
+
 
 const initialCards = [{
         name: "Yosemite Valley",
@@ -49,19 +49,6 @@ const initialCards = [{
     }
 ];
 
-function openModal(modalWindow) {
-    document.addEventListener('keyup', closeByEscape);
-    document.addEventListener('click', clickClose);
-    modalWindow.classList.add(`modal_opened`);
-    pageOverlay.classList.remove('page__overlay_disabled');
-}
-
-function closeModal(modalWindow) {
-    document.removeEventListener('keyup' , closeByEscape);
-    document.removeEventListener('click' , clickClose);
-    modalWindow.classList.remove(`modal_opened`);
-    pageOverlay.classList.add('page__overlay_disabled');
-}
 
 function handleSubmitForm(evt) {
     evt.preventDefault();
@@ -88,58 +75,20 @@ function handleSaveForm(evt) {
 }
 
 function initiateCard(card) {
-    const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
-    elementCard.querySelector(`.element__title`).textContent = card.name;
-    elementCard.querySelector('.element__image').src = card.link;
-    elementCard.querySelector('.element__image').alt = card.name;
-    elementCard.querySelector('.element__like-button').addEventListener('click', (evt) => {
-        const eventTarget = evt.target;
-        eventTarget.classList.toggle(`element__like-button_active`);
-    });
-    elementCard.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-        elementCard.remove();
-    });
-    elementCard.querySelector('.element__image-button').addEventListener('click', (evt) => {
-        modalImage.querySelector(`.modal__image`).src = card.link;
-        modalImage.querySelector(`.modal__image`).alt = card.alt;
-        modalImage.querySelector(`.modal__footer`).textContent = card.name;
-        openModal(modalImage);
-    });
-    return renderCard(elementCard);
+    const cardNew = new Card(card, elementTemplate);
+    elements.prepend(cardNew.render());
 }
 
-function initiateCards() {
-    for (let i = 0; i < initialCards.length; i++) {
-        initiateCard(initialCards[i]);
-    }
-}
-
-function renderCard(card){
-    elements.prepend(card);
-}
-
-function closeByEscape(evt){
-    if(evt.key === "Escape"){
-        const openedPopup  = document.querySelector('.modal_opened');
-        closeModal(openedPopup);
-    }
-}
-
-function clickClose(evt) {
-        const page = document.querySelector('.page');
-        const pageWrapper = document.querySelector('.page__wrapper');
-        if ((evt.target === page)||(evt.target === pageWrapper)) {
-          const openedPopup  = document.querySelector('.modal_opened');
-          closeModal(openedPopup);
-        }
-}
+initialCards.forEach((data) => {
+    const card = new Card(data, elementTemplate);
+    elements.prepend(card.render());
+})
 
 function disableButton() {
     modalSubmitButton.disabled = true;
     modalSubmitButton.classList.add('modal__save_disabled');
 }
 disableButton();
-initiateCards();
 modalEditButton.addEventListener('click', () => {
     modalName.value = profileName.textContent; 
     modalAboutMe.value = profileAboutMe.textContent; 
@@ -154,3 +103,16 @@ closeButtons.forEach(button => {
        const myModal = button.closest('.modal');
        closeModal(myModal);
 })});
+const formSelector = ".modal__form";
+const formSettings = {
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__save",
+    inactiveButtonClass: "modal__save_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible"
+  }
+const getFormList = Array.from(document.querySelectorAll(formSelector));
+getFormList.forEach(formElement => {
+      const formValidator = new FormValidator(formSettings, formElement);
+      formValidator.enableValidation();
+      });
