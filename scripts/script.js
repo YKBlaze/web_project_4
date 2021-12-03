@@ -70,25 +70,23 @@ function handleSaveForm(evt) {
     initiateCard(initialCardsUpdated);
     modalTitle.value = "";
     modalLink.value ="";
-    disableButton();
     closeModal(modalAdd);
 }
 
-function initiateCard(card) {
-    const cardNew = new Card(card, elementTemplate);
-    elements.prepend(cardNew.render());
+function initiateCard(data) {
+    prependCard(data);
+}
+
+function prependCard(data) {
+    const card = new Card(data, elementTemplate);
+    elements.prepend(card.render());
 }
 
 initialCards.forEach((data) => {
-    const card = new Card(data, elementTemplate);
-    elements.prepend(card.render());
+    prependCard(data);
 })
 
-function disableButton() {
-    modalSubmitButton.disabled = true;
-    modalSubmitButton.classList.add('modal__save_disabled');
-}
-disableButton();
+
 modalEditButton.addEventListener('click', () => {
     modalName.value = profileName.textContent; 
     modalAboutMe.value = profileAboutMe.textContent; 
@@ -103,7 +101,8 @@ closeButtons.forEach(button => {
        const myModal = button.closest('.modal');
        closeModal(myModal);
 })});
-const formSelector = ".modal__form";
+
+
 const formSettings = {
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__save",
@@ -111,8 +110,9 @@ const formSettings = {
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible"
   }
-const getFormList = Array.from(document.querySelectorAll(formSelector));
-getFormList.forEach(formElement => {
-      const formValidator = new FormValidator(formSettings, formElement);
-      formValidator.enableValidation();
-      });
+
+const editCard = new FormValidator(formSettings, modalEdit);
+editCard.enableValidation();
+const addCard = new FormValidator(formSettings, modalAdd);
+addCard.enableValidation();
+addCard.resetValidation();

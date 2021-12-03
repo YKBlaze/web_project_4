@@ -1,3 +1,4 @@
+const modalAdd = document.querySelector(`.modal_type_add-card`);
 class FormValidator {
     constructor(settings, formElement){
         this._inputSelector = settings.inputSelector;
@@ -33,7 +34,7 @@ class FormValidator {
         if(inputElement.validity.valid){
             this._hideInputError(inputElement, inputElement.validationMessage);
          } else {
-            this._showInputError(inputElement);
+            this._showInputError(inputElement, inputElement.validationMessage);
          }  
     }
     _setEventListeners(){
@@ -46,11 +47,23 @@ class FormValidator {
             });
         });
     }
+    resetValidation() {
+      const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+      const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+      this._toggleButtonState(inputList,buttonElement); 
+      inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement) 
+      });
+
+    }
     enableValidation() {
         this._formElement.addEventListener('submit', e => {
             e.preventDefault();
         });
         this._setEventListeners(this._formElement, this._settings);
+        if (this._formElement === document.getElementById(`#add`)){
+
+        }
     }
 }
 
