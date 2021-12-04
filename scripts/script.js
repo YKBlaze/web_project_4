@@ -93,7 +93,10 @@ modalEditButton.addEventListener('click', () => {
     openModal(modalEdit);
   });
 
-modalAddButton.addEventListener('click', () => openModal(modalAdd));
+modalAddButton.addEventListener('click', () =>{
+    openModal(modalAdd);
+    addCard.resetValidation();
+}) 
 modalAdd.addEventListener('submit', handleSaveForm);
 modalEdit.addEventListener('submit', handleSubmitForm);
 closeButtons.forEach(button => { 
@@ -113,6 +116,5 @@ const formSettings = {
 
 const editCard = new FormValidator(formSettings, modalEdit);
 editCard.enableValidation();
-const addCard = new FormValidator(formSettings, modalAdd);
+export const addCard = new FormValidator(formSettings, modalAdd);
 addCard.enableValidation();
-addCard.resetValidation();

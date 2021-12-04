@@ -61,9 +61,6 @@ class FormValidator {
             e.preventDefault();
         });
         this._setEventListeners(this._formElement, this._settings);
-        if (this._formElement === document.getElementById(`#add`)){
-
-        }
     }
 }
 
