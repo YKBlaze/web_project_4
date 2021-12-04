@@ -91,6 +91,7 @@ modalEditButton.addEventListener('click', () => {
     modalName.value = profileName.textContent; 
     modalAboutMe.value = profileAboutMe.textContent; 
     openModal(modalEdit);
+    editCard.resetValidation();
   });
 
 modalAddButton.addEventListener('click', () =>{
