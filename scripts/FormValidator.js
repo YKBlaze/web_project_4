@@ -60,7 +60,7 @@ class FormValidator {
         this._formElement.addEventListener('submit', e => {
             e.preventDefault();
         });
-        this._setEventListeners(this._formElement, this._settings);
+        this._setEventListeners();
     }
 }
 
