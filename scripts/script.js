@@ -117,5 +117,5 @@ const formSettings = {
 
 const editCard = new FormValidator(formSettings, modalEdit);
 editCard.enableValidation();
-export const addCard = new FormValidator(formSettings, modalAdd);
+const addCard = new FormValidator(formSettings, modalAdd);
 addCard.enableValidation();
