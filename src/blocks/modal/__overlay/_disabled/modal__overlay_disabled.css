@@ -1,0 +1,4 @@
+.modal__overlay_disabled {
+    opacity: 1;
+    pointer-events: auto;
+}

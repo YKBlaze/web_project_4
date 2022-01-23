@@ -1,9 +1,9 @@
-import { openModal } from "./utils.js";
 export default class Card {
-    constructor(cardData, cardTemplateSelector) {
+    constructor(cardData, cardTemplateSelector, onImageClick) {
         this._name = cardData.name;
         this._link = cardData.link;
         this._template = cardTemplateSelector;
+        this._onImageClick = onImageClick;
         
         }
         _like(evt) {
@@ -14,11 +14,7 @@ export default class Card {
             evt.target.closest(`.element`).remove();
         }
         _handleImage() {
-            this._image = document.querySelector(`.modal_type_image-card`);
-            this._image.querySelector(`.modal__image`).src = this._link;
-            this._image.querySelector(`.modal__image`).alt = this._alt;
-            this._image.querySelector(`.modal__footer`).textContent = this._name;
-            openModal(this._image);
+            this._onImageClick({link: this._link, text: this._name})
         }
 
         _addEventListeners() {

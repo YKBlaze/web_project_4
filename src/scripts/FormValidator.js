@@ -1,4 +1,3 @@
-const modalAdd = document.querySelector(`.modal_type_add-card`);
 class FormValidator {
     constructor(settings, formElement){
         this._inputSelector = settings.inputSelector;

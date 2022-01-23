@@ -1,11 +1,12 @@
 @import url("../vendor/normalize.css");
 @import url("../fonts/fonts.css");
-@import url("../scripts/script.js");
 @import url("../blocks/page/page.css");
 @import url("../blocks/page/__wrapper/page__wrapper.css");
 @import url("../blocks/page/__overlay/page__overlay.css");
 @import url("../blocks/page/__overlay/_disabled/page__overlay_disabled.css");
 @import url("../blocks/modal/modal.css");
+@import url("../blocks/modal/__overlay/modal__overlay.css");
+@import url("../blocks/modal/__overlay/_disabled/modal__overlay_disabled.css");
 @import url("../blocks/modal/_opened/modal_opened.css");
 @import url("../blocks/modal/__about-me/modal__about-me.css");
 @import url("../blocks/modal/__close/modal__close.css");
