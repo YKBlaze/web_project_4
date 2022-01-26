@@ -1,45 +1,13 @@
 import "../pages/index.css";
-import FormValidator from "./FormValidator.js";
-import { openModal, closeModal} from "./utils.js";
-import Card from "./Card.js";
-import Popup from "./Popup.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js";
+import FormValidator from "../scripts/FormValidator.js";
+import { initialCards, closeModal} from "../scripts/utils.js";
+import Card from "../scripts/Card.js";
+import Popup from "../scripts/Popup.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import Section from "../scripts/Section.js";
+import UserInfo from "../scripts/UserInfo.js";
 
-
-const initialCards = [{
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-    alt:  "Yosemite Valley"
-},
-{
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-    alt:  "Lake Louise"
-},
-{
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-    alt:  "Bald Mountains"
-},
-{
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-    alt:  "Latemar"
-},
-{
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-    alt:  "Vanoise National Park"
-},
-{
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-    alt:  "Lago di Braies"
-}
-];
 
 const modalEditButton = document.querySelector(`.profile__edit-button`);
 const modalAddButton = document.querySelector(`.profile__add-button`);
@@ -48,7 +16,6 @@ const modalEditElement = document.querySelector(`.modal_type_edit-card`);
 const profileName = document.querySelector(`#title`);
 const profileAboutMe = document.querySelector(`#about`);
 const elementTemplate = document.querySelector(`#element`).content;
-const closeButtons = document.querySelectorAll(`.modal__close`);
 
 
 const modalImage = new PopupWithImage('.modal_type_image-card');
@@ -63,8 +30,7 @@ const modalAdd = new PopupWithForm(`.modal_type_add-card`, (data) => {
     initialCardsUpdated.name = data.title;
     initialCardsUpdated.link = data['image-link'];
     initialCardsUpdated.alt = `Photo of ${data['image-link']}`;
-    const card = new Card(initialCardsUpdated, elementTemplate, modalImage.open)
-    initialCardsRender.addItem(card.render());
+    createCard(initialCardsUpdated);
     modalAdd.close();
 });
 modalAdd.setEventListeners();
@@ -81,8 +47,7 @@ const userData = new UserInfo({
 });
 
 const initialCardsRender = new Section({items: initialCards, renderer: (element)=>{
-    const card = new Card(element, elementTemplate, modalImage.open);
-    initialCardsRender.addItem(card.render());
+    createCard(element);
 }}, ".elements");
 initialCardsRender.renderItems();
 
@@ -100,12 +65,6 @@ modalAddButton.addEventListener('click', () =>{
     modalAdd.open();
     addCard.resetValidation();
 });
-closeButtons.forEach(button => { 
-    button.addEventListener('click', () => {
-       const myModal = button.closest('.modal');
-       closeModal(myModal);
-})});
-
 
 const formSettings = {
     inputSelector: ".modal__input",
@@ -119,3 +78,8 @@ const editCard = new FormValidator(formSettings, modalEditElement);
 editCard.enableValidation();
 const addCard = new FormValidator(formSettings, modalAddElement);
 addCard.enableValidation();
+
+function createCard(InitialCards) {
+    const card = new Card(InitialCards, elementTemplate, modalImage.open)
+    initialCardsRender.addItem(card.render());
+}
