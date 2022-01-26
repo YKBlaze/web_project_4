@@ -16,7 +16,7 @@ export default class Popup {
     }
     setEventListeners(){
         document.addEventListener('click', (evt) => {
-            if(evt.target.classList.contains(`page__wrapper`) || evt.target.parentElement.classList.contains('modal__close')){
+            if(evt.target.classList.contains(`page__wrapper`) || evt.target.classList.contains(`page`) || evt.target.parentElement.classList.contains('modal__close')){
                 this.close();
             }
         }); 
