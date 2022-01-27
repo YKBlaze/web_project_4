@@ -1,12 +1,12 @@
-import "../pages/index.css";
-import FormValidator from "../scripts/FormValidator.js";
-import { initialCards, closeModal} from "../scripts/utils.js";
-import Card from "../scripts/Card.js";
-import Popup from "../scripts/Popup.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import Section from "../scripts/Section.js";
-import UserInfo from "../scripts/UserInfo.js";
+import "./index.css";
+import FormValidator from "../components/FormValidator.js";
+import { initialCards, formSettings} from "../utils/utils.js";
+import Card from "../components/Card.js";
+import Popup from "../components/Popup.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 
 
 const modalEditButton = document.querySelector(`.profile__edit-button`);
@@ -58,26 +58,19 @@ modalEditButton.addEventListener('click', () => {
     profileName.value = data.name;
     profileAboutMe.value = data.job;
     modalEdit.open();
-    editCard.resetValidation();
+    editCardValidator.resetValidation();
   });
 
 modalAddButton.addEventListener('click', () =>{
     modalAdd.open();
-    addCard.resetValidation();
+    addCardValidator.resetValidation();
 });
 
-const formSettings = {
-    inputSelector: ".modal__input",
-    submitButtonSelector: ".modal__save",
-    inactiveButtonClass: "modal__save_disabled",
-    inputErrorClass: "modal__input_type_error",
-    errorClass: "modal__error_visible"
-  }
 
-const editCard = new FormValidator(formSettings, modalEditElement);
-editCard.enableValidation();
-const addCard = new FormValidator(formSettings, modalAddElement);
-addCard.enableValidation();
+const editCardValidator = new FormValidator(formSettings, modalEditElement);
+editCardValidator.enableValidation();
+const addCardValidator = new FormValidator(formSettings, modalAddElement);
+addCardValidator.enableValidation();
 
 function createCard(InitialCards) {
     const card = new Card(InitialCards, elementTemplate, modalImage.open)

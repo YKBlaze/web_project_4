@@ -5,6 +5,14 @@ export function closeByEscape(evt){
     }
 }
 
+export const formSettings = {
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__save",
+    inactiveButtonClass: "modal__save_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible"
+  }
+
 function clickClose(evt) {
     const page = document.querySelector('.page');
     const pageWrapper = document.querySelector('.page__wrapper');
