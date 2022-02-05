@@ -15,10 +15,6 @@
 .modal__save:hover {
     opacity: 0.8;
 }
-.modal__save:loader {
-    color: red;
-
-}
 @media screen and (max-width:1279px){
     .modal__save{
         top: 46px;
