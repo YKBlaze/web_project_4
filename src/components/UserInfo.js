@@ -11,7 +11,7 @@ export default class UserInfo {
             name: this._name.textContent,
             job: this._job.textContent,
             avatar: this._avatar,
-            id: this.id
+            id: this._id
         }
     }
     setUserInfo({ name, job, avatar, id}){
