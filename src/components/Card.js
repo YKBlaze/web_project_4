@@ -14,7 +14,7 @@ export default class Card {
         }
         removeCard() {
             this._element.remove();
-            this._element.querySelector('.element__like-button').removeEventListener('click', () => this._like(this._id));
+            this._likeButton.removeEventListener('click', () => this._like(this._id));
             this._element.querySelector('.element__delete-button').removeEventListener('click',() => this._handleDeleteCard(this._id));
             this._element.querySelector('.element__image-button').removeEventListener('click', () => this._handleImage(this._element));
             this._element = null;
@@ -35,7 +35,7 @@ export default class Card {
         }
 
         _addEventListeners() {
-            this._element.querySelector('.element__like-button').addEventListener('click', () => this._like(this._id));
+            this._likeButton.addEventListener('click', () => this._like(this._id));
             this._element.querySelector('.element__delete-button').addEventListener('click',() => this._handleDeleteCard(this._id));
             this._element.querySelector('.element__image-button').addEventListener('click', () => this._handleImage(this._element));
         }

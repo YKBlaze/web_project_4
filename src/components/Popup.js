@@ -6,13 +6,13 @@ export default class Popup {
         this.close.bind(this);
     }
     open(){
-        this._overlay.addEventListener('keyup', this._handleEscapeClose);
+        document.addEventListener('keyup', this._handleEscapeClose);
         document.addEventListener('mousedown', this._handleOverlay);
         this._popup.classList.add(`modal_opened`);
         this._overlay.classList.remove('page__overlay_disabled');
     }
     close(){
-        this._overlay.removeEventListener('keyup', this._handleEscapeClose);
+        document.removeEventListener('keyup', this._handleEscapeClose);
         document.removeEventListener('mousedown', this._handleOverlay);
         this._popup.classList.remove(`modal_opened`);
         this._overlay.classList.add('page__overlay_disabled');

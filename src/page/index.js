@@ -17,7 +17,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     cards.forEach(cardData => {
         createCard(cardData);
     });
-    userData.setUserInfo({ title: userInfo.name, about: userInfo.about, avatar: userInfo.avatar, id: userInfo._id });
+    userData.setUserInfo({ name: userInfo.name, job: userInfo.about, avatar: userInfo.avatar, id: userInfo._id });
 })
 .catch((err) => {
     console.log(err);
@@ -57,9 +57,12 @@ modalAdd.setEventListeners();
 
 const modalEdit = new PopupWithForm(`.modal_type_edit-card`, (data) => {
     modalEdit.loading();
-    api.setUserInfo({name: data.title, about: data.about, avatar: data.avatar})
+    
+    api.setUserInfo({name: data.title, about: data.about})
     .then(res =>{
-        userData.setUserInfo(data);
+        data.avatar = modalProfileEditButton.src;
+        data.id = userId;
+        userData.setUserInfo({name: data.title, job: data.about, avatar: data.avatar, id: data.id});
         modalEdit.close();
     })
     .catch((err) => {
@@ -79,8 +82,9 @@ const modalProfileEdit= new PopupWithForm(`.modal_type_profile-edit`,(data) => {
     modalProfileEdit.loading();
     api.updateProfile({avatar: data.profilelink})
     .then(res =>{
-        const dataGet = userData.getUserInfo()
-        dataGet.avatar = data.profilelink
+        const dataGet = userData.getUserInfo();
+        dataGet.avatar = data.profilelink;
+        dataGet.id = userId;
         userData.setUserInfo(dataGet);
         modalProfileEdit.close();
     })
@@ -96,7 +100,6 @@ modalProfileEdit.setEventListeners();
 const userData = new UserInfo({
     name: '.profile__name', job: '.profile__about-me', avatar: '.profile__image', id: userId
 });
-
 const initialCardsRender = new Section({items: initialCards, renderer: (element)=>{
     createCard(element);
 }}, ".elements");
