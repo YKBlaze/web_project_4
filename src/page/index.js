@@ -94,7 +94,7 @@ const modalProfileEdit= new PopupWithForm(`.modal_type_profile-edit`,(data) => {
 modalProfileEdit.setEventListeners();
 
 const userData = new UserInfo({
-    name: '.profile__name', job: '.profile__about-me', avatar: '.profile__image'
+    name: '.profile__name', job: '.profile__about-me', avatar: '.profile__image', id: userId
 });
 
 const initialCardsRender = new Section({items: initialCards, renderer: (element)=>{
