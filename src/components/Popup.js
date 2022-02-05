@@ -30,7 +30,7 @@ export default class Popup {
     }
     loading(){
         this._submitButton.disabled = true;
-        this._submitButton.textContent = "Checking..."
+        this._submitButton.textContent = "Saving..."
     }
     loaded(){
         this._submitButton.disabled = false;
