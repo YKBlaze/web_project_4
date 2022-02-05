@@ -122,12 +122,14 @@ profileCardValidator.enableValidation();
 
 function createCard(data) {
     const card = new Card(data, elementTemplate, modalImage.open, (id) =>{
+        modalConfirm.loading();
         modalConfirm.open();
         modalConfirm.setAction(() => {
             api.deleteCard(id)
             .then(res => {
                 card.removeCard();
                 modalConfirm.close();
+                modalConfirm.loaded();
             })
             .catch((err) => {
                 console.log(err);
