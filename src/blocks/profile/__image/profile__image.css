@@ -1,6 +1,13 @@
 .profile__image {
+    position: relative;
     border-radius: 50%;
     object-fit: cover;
     width: 120px;
+    z-index: 2;
     height: 120px;
+    transition: 0.5s; 
+}
+.profile__image:hover {
+    opacity: 0.5;
+    z-index: 0;
 }

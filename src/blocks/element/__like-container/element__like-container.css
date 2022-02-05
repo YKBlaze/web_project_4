@@ -1,6 +1,6 @@
-.modal__form{
+.element__like-container {
     display: flex;
     position: relative;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
 }

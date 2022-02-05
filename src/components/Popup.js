@@ -1,6 +1,7 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
+        this._submitButton = this._popup.querySelector('.modal__save');
         this._overlay = document.querySelector(`.page__overlay`);
         this.close.bind(this);
     }
@@ -20,10 +21,17 @@ export default class Popup {
                 this.close();
             }
         }); 
+        
     }
     _handleEscapeClose = (evt) => {
         if(evt.key === "Escape"){
             this.close();
         }
+    }
+    loading(){
+        this._submitButton.textContent = "Checking..."
+    }
+    loaded(){
+        this._submitButton.textContent = `${this._submitButtonDefault}`;
     }
 }

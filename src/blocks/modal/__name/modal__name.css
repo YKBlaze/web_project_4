@@ -1,7 +1,7 @@
 .modal__name {
     all: unset;
     margin-top: 138px;
-    margin-left: 36px;
+    left: 50%;
     width: 358px;
     font-size: 14px;
     line-height: 30px;

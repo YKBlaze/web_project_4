@@ -1,20 +1,16 @@
-.modal__about-me {
+.modal__profile{
     all: unset;
-    margin-top: 57px;
+    margin-top: 138px;
     left: 50%;
     width: 358px;
-    bottom: 135px;
-    left: 36px;
     font-size: 14px;
     line-height: 30px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 @media screen and (max-width:1279px){
-    .modal__about-me{
-        margin-top: 56px;
+    .modal__profile{
+        margin-top: 10;
+        width: 238px;   
         left: 50%;
-        width: 238px;
-        height: 46px;
-        bottom: 117px;
-    }
+    }  
 }

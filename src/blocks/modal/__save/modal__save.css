@@ -1,6 +1,6 @@
 .modal__save{
-    margin-top: 48px;
-    margin-left: 36px;
+    margin-top: 95px;
+    left: 50%;
     margin-bottom: 36px;
     outline: none;
     color: white;
@@ -10,23 +10,21 @@
     line-height: 22px;
     background: #000000;
     border-radius: 2px;
-    bottom: 36px;
-    left: 36px;
-    right: 36px;
     cursor: pointer;
 }
 .modal__save:hover {
     opacity: 0.8;
 }
+.modal__save:loader {
+    color: red;
+
+}
 @media screen and (max-width:1279px){
     .modal__save{
-        margin-top: 46px;
-        margin-left: 22px;
-        margin-bottom: 25px;
+        top: 46px;
+        left: 50%;
         width: 238px;
         height: 46px;
-        left: 22px;
-        right: 22px;
         bottom: 25px;
     }
     

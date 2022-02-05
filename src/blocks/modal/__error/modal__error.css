@@ -1,5 +1,5 @@
 .modal__error{
-    margin-left: 36px;
+    left: 50%;
     margin-top: 5px;
     display: none;
     visibility: none;
@@ -9,6 +9,6 @@
 }
 @media screen and (max-width:1279px){
     .modal__error{
-        margin-left: 22px;
+        left: 50%;
     }
 }
