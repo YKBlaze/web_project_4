@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithSubmit extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
+        this._submitButtonDefault = this._submitButton.textContent;
     }
      setAction(action) {
          this._submitHandler = action;
@@ -15,8 +16,4 @@ export default class PopupWithSubmit extends Popup {
             this._submitHandler();
          });   
      }
-     open(){
-        super.open();
-        this._submitButtonDefault = this._submitButton.textContent;
-    }
 }

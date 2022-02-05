@@ -17,7 +17,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     cards.forEach(cardData => {
         createCard(cardData);
     });
-    userData.setUserInfo({ title: userInfo.name, about: userInfo.about });
+    userData.setUserInfo({ title: userInfo.name, about: userInfo.about, avatar: userInfo.avatar, id: userInfo._id });
 })
 .catch((err) => {
     console.log(err);
@@ -42,28 +42,33 @@ const modalAdd = new PopupWithForm(`.modal_type_add-card`, (data) => {
     modalAdd.loading();
     api.createCard({name: data.title, link: data.imagelink})
     .then(res => {
-        createCard(res);
         modalAdd.close();
-        modalAdd.loaded();
+        createCard(res);
     })
     .catch((err) => {
         console.log(err);
-      });
+      })
+    .finally(() => {
+        modalAdd.loaded();
+    })
       
 });
 modalAdd.setEventListeners();
 
 const modalEdit = new PopupWithForm(`.modal_type_edit-card`, (data) => {
     modalEdit.loading();
-    api.setUserInfo({name: data.title, about: data.about})
+    api.setUserInfo({name: data.title, about: data.about, avatar: data.avatar})
     .then(res =>{
         userData.setUserInfo(data);
-        modalEdit.loaded();
+        modalEdit.close();
     })
     .catch((err) => {
         console.log(err);
-      });
-    modalEdit.close();
+      })
+    .finally(() => {
+        modalEdit.loaded();
+    });
+    
 });
 modalEdit.setEventListeners();
 
@@ -74,18 +79,22 @@ const modalProfileEdit= new PopupWithForm(`.modal_type_profile-edit`,(data) => {
     modalProfileEdit.loading();
     api.updateProfile({avatar: data.profilelink})
     .then(res =>{
-        modalProfileEditButton.src = data.profilelink;
-        modalProfileEdit.loaded();
+        const dataGet = userData.getUserInfo()
+        dataGet.avatar = data.profilelink
+        userData.setUserInfo(dataGet);
+        modalProfileEdit.close();
     })
     .catch((err) => {
         console.log(err);
-      });
-    modalProfileEdit.close();
+      })
+    .finally(() => {
+        modalProfileEdit.loaded();
+    });
 });
 modalProfileEdit.setEventListeners();
 
 const userData = new UserInfo({
-    name: '.profile__name', job: '.profile__about-me'
+    name: '.profile__name', job: '.profile__about-me', avatar: '.profile__image'
 });
 
 const initialCardsRender = new Section({items: initialCards, renderer: (element)=>{
@@ -129,11 +138,13 @@ function createCard(data) {
             .then(res => {
                 card.removeCard();
                 modalConfirm.close();
-                modalConfirm.loaded();
             })
             .catch((err) => {
                 console.log(err);
-              });
+              })
+            .finally(() => {    
+                modalConfirm.loaded();
+            });
         });
     }, userId, (id) =>{
         if (card.isLiked()){

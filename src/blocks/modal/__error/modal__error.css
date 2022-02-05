@@ -1,5 +1,6 @@
 .modal__error{
-    left: 50%;
+    align-self: flex-start;
+    margin-left: 36px;
     margin-top: 5px;
     display: none;
     visibility: none;
@@ -9,6 +10,6 @@
 }
 @media screen and (max-width:1279px){
     .modal__error{
-        left: 50%;
+        margin-left: 29px;
     }
 }
