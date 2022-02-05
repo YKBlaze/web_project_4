@@ -29,9 +29,11 @@ export default class Popup {
         }
     }
     loading(){
+        this._submitButton.disabled = true;
         this._submitButton.textContent = "Checking..."
     }
     loaded(){
+        this._submitButton.disabled = false;
         this._submitButton.textContent = `${this._submitButtonDefault}`;
     }
 }
